@@ -25,7 +25,7 @@
                 <div class="portal-subheading">
                     <h3>Join the sector.</h3>
                 </div>
-                <form action="/9th-portal" method="post">
+                <form action="/9th-portal" method="post" id="form-9th">
 
                     <!-- Personal Information< -->
 
@@ -38,20 +38,22 @@
                     <input type="text" name="mothername" id="mothername" placeholder="Enter Your Mother Name">
                     <label for="gender">Gender</label>
                     <select name="gender" id="gender">
+                        <option value="" selected disabled hidden style="opacity: 60%;">Select your gender</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>
                     <label for="category">Category</label>
                     <select name="category" id="category">
+                        <option value="" selected disabled hidden style="opacity: 60%;">Select your category</option>
                         <option value="General">General</option>
                         <option value="OBC">OBC</option>
                         <option value="SC">SC</option>
                         <option value="ST">ST</option>
                     </select>
                     <label for="adhaar">Adhaar No.</label>
-                    <input type="text" name="adhaar" id="adhaar" placeholder="Enter Your Adhaar No.">
+                    <input type="text" name="adhaar" id="adhaar" maxlength="12" pattern="\d{12}" placeholder="Enter Your Adhaar No.">
                     <label for="sssmID">Samagra ID</label>
-                    <input type="text" name="sssmID" id="sssmID" placeholder="Enter Your Samagra ID">
+                    <input type="text" name="sssmID" id="sssmID" maxlength="9" pattern="\d{9}" placeholder="Enter Your Samagra ID">
                     <label for="dob">Date of Birth</label>
                     <input type="date" name="dob" id="dob" placeholder="Enter Your Samagra ID">
 
@@ -59,11 +61,12 @@
 
                     <h2 class="breakers">Academic Information</h2>
                     <label for="rollNumber"> Roll Number</label>
-                    <input type="text" name="rollNumber" id="rollNumber" placeholder="Enter Your Roll Number">
+                    <input type="text" name="rollNumber" id="rollNumber" minlength="5" pattern="\d{5,}" placeholder="Enter Your Roll Number">
                     <label for="marks">Marks Obtained</label>
-                    <input type="number" name="marks" id="marks" placeholder="Enter Your Marks Obtained">
+                    <input type="text" name="marks" id="marks" pattern="\d+" placeholder="Enter Your Marks Obtained">
                     <label for="stream">Stream</label>
                     <select name="stream" id="stream">
+                        <option value="" selected disabled hidden style="opacity: 60%;">Select your preference</option>
                         <option value="IT">Information Technology</option>
                         <option value="security">Security</option>
                     </select>
@@ -74,10 +77,10 @@
                     <label for="email">Email</label>
                     <input type="email" name="email" id="email" placeholder="Enter Your Email">
                     <label for="phone">Phone Number</label>
-                    <input type="text" name="phone" id="phone" placeholder="e.g. +91 7566888870">
+                    <input type="tel" name="phone" id="phone" maxlength="10" pattern="\d{10}" placeholder="e.g. +91 7566888870">
                     <label for="address">Address</label>
                     <input type="text" name="address" id="address" placeholder="Enter Your Address">
-                    <button class="btn-peela btn portal-btn" type="submit">Apply</button>
+                    <button class="btn-peela btn portal-btn" id="submit" type="submit">Apply</button>
                 </form>
             </div>
             <div class="image-wrap">
@@ -104,6 +107,104 @@
     <script type="module" src="/javascripts/main.js"></script>
     <script>
     </script>
+
+    <!-- To Preevent multiple submission -->
+     <script>
+        document.getElementById('form-9th').addEventListener('submit', function (e) {
+    const btn = document.getElementById('submit');
+    
+    // Disable the button to prevent multiple submissions
+    btn.disabled = true;
+    btn.innerText = 'Submitting...';
+    btn.style.cursor = 'not-allowed';
+    
+    // 🧠 Do NOT preventDefault unless you're handling submit manually via AJAX
+    // Let the form naturally submit to the server (for redirect to thankyou)
+});
+
+     </script>
+
+     <!-- Adhaar validation -->
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const error = urlParams.get('error');
+  if (error === 'duplicate') {
+    alert("❌ Aadhaar already used. Only one submission allowed.");
+    window.location.href = "/9th-portal"; // reload clean page after alert
+    form.reset();
+  }
+</script>
+
+<!-- Form Number fields real time JS -->
+<script>
+  const onlyDigits = (event) => {
+    const input = event.target;
+    input.value = input.value.replace(/\D/g, ''); // Remove non-digits
+  };
+
+  // Attach to all numeric fields
+  document.getElementById('adhaar').addEventListener('input', onlyDigits);
+  document.getElementById('sssmID').addEventListener('input', onlyDigits);
+  document.getElementById('rollNumber').addEventListener('input', onlyDigits);
+  document.getElementById('marks').addEventListener('input', onlyDigits);
+  document.getElementById('phone').addEventListener('input', onlyDigits);
+</script>
+
+<!-- Form Numeric fields custom message -->
+ <script>
+  const adhaar = document.getElementById('adhaar');
+  const sssmID = document.getElementById('sssmID');
+  const rollNumber = document.getElementById('rollNumber');
+  const marks = document.getElementById('marks');
+  const phone = document.getElementById('phone');
+
+  adhaar.addEventListener('input', function () {
+    const val = adhaar.value;
+    if (!/^\d{12}$/.test(val)) {
+      adhaar.setCustomValidity("Aadhaar number must be exactly 12 digits.");
+    } else {
+      adhaar.setCustomValidity("");
+    }
+  });
+
+  sssmID.addEventListener('input', function () {
+    const val = sssmID.value;
+    if (!/^\d{9}$/.test(val)) {
+      sssmID.setCustomValidity("Samagra ID must be exactly 9 digits.");
+    } else {
+      sssmID.setCustomValidity("");
+    }
+  });
+
+  rollNumber.addEventListener('input', function () {
+    const val = rollNumber.value;
+    if (!/^\d{5,}$/.test(val)) {
+      rollNumber.setCustomValidity("Roll Number must be atleast 5 digits.");
+    } else {
+      rollNumber.setCustomValidity("");
+    }
+  });
+
+  marks.addEventListener('input', function () {
+    const val = Number(marks.value);
+    if (isNaN(val) || val < 0 || val > 100) {
+      marks.setCustomValidity("Marks must be between 0 and 100 only.");
+    } else {
+      marks.setCustomValidity("");
+    }
+  });
+  
+  phone.addEventListener('input', function () {
+  const val = phone.value;
+  if (!/^\d{10}$/.test(val)) {
+    phone.setCustomValidity("Phone number must be exactly 10 digits.");
+  } else {
+    phone.setCustomValidity("");
+  }
+});
+</script>
+
+
 </body>
 
 </html>

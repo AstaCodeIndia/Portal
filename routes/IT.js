@@ -7,26 +7,44 @@ const itConnection = mongoose.createConnection('mongodb+srv://astacodeindia:indi
 const ninthclassSchema = new mongoose.Schema({
   fullname: String,
   fathername: String,
+  mothername: String,
+  gender: String,
+  category: String,
+  adhaar: {
+    type: String,
+    required: true,
+    unique: true, // 🛡️ This ensures no duplicate Aadhaar
+  },
+  sssmID: String,
+  dob: String,
   rollNumber: String,
   marks: Number,
   stream: String,
-  gender: String,
   email: String,
   phone: String,
-  mothername: String,
-
+  address: String,
 })
 
 // Schema for 11th class
 const eleventhclassSchema = new mongoose.Schema({
   fullname: String,
   fathername: String,
+  mothername: String,
+  gender: String,
+  category: String,
+  adhaar: {
+    type: String,
+    // required: true,
+    // unique: true,
+  },
+  sssmID: String,
+  dob: Date,
   rollNumber: String,
   marks: Number,
   stream: String,
-  gender: String,
   email: String,
   phone: String,
+  address: String,
 })
 
 const ITNinthClass = itConnection.model('9th-class', ninthclassSchema);

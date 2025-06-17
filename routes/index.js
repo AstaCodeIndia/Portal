@@ -4,43 +4,6 @@ const { ITNinthClass, ITEleventhClass } = require('./IT');
 const { SecurityNinthClass } = require('./security');
 const nodemailer = require('nodemailer');
 
-// Nodemailer setup
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'codingheroes2908@gmail.com', // Your email
-    pass: 'vvwibatjhbesners' // Your app password or email password
-  },
-  tls: {
-    rejectUnauthorized: false // For development purpose, avoid in production
-  },
-  logger: true,  // Log the transport actions
-  debug: true    // Log debug messages
-});
-
-// Utility function to send notification emails
-const sendNotificationEmails = (selectedStudents) => {
-  selectedStudents.forEach(student => {
-    const mailOptions = {
-      from: 'codingheroes2908@gmail.com',
-      to: student.email,
-      subject: `Selection Notification for Class ${student.class}`,
-      text: `Dear ${student.fullname},\n\nCongratulations! You have been selected for Class ${student.class} in Trade ${student.trade}. Please join as per the given instructions.\n\nBest Regards,\nVocational Portal Team`
-    };
-
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.log('Error sending email: ', error);
-        return res.status(500).send('Error occurred while sending email');
-      }
-      console.log('Email sent: ' + info.response);
-      res.status(200).send('Email sent successfully');
-    });
-
-  });
-};
-
-
 // Routes
 
 // Home page
@@ -130,39 +93,71 @@ router.get('/download-csv', async (req, res) => {
   }
 });
 
-// Send notifications
-router.post('/send-notifications', async (req, res) => {
-  try {
-    const { classType, stream } = req.body;
-    let Students;
+//Nodemailer-Notifiation setup
 
-    // Determine which class and stream to fetch from
-    if (classType === '9th' && stream === 'IT') {
-      Students = ITNinthClass;
-    } else if (classType === '11th' && stream === 'IT') {
-      Students = ITEleventhClass;
-    } else if (classType === '9th' && stream === 'Security') {
-      Students = SecurityNinthClass;
-    } else {
-      return res.status(400).send("Invalid class type or stream");
+// route to send emails to 25 boys + 25 girls
+router.post('/send-selected-mails', async (req, res) => {
+    const IT9 = await ITNinthClass.find();
+    const IT11 = await ITEleventhClass.find();
+    const Security9 = await SecurityNinthClass.find();
+    const allApplicants = [...IT9, ...IT11, ...Security9];
+
+
+    const boys = allApplicants.filter(app => app.gender === 'Male').sort((a, b) => b.marks - a.marks).slice(0, 25);
+    const girls = allApplicants.filter(app => app.gender === 'Female').sort((a, b) => b.marks - a.marks).slice(0, 25);
+
+    const selected = [...boys, ...girls];
+
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'astacodeindiabusiness@gmail.com',
+            pass: 'srzbhwlzfzipmxcy'
+        }
+    });
+
+    for (let student of selected) {
+        await transporter.sendMail({
+            from: 'your_email@gmail.com',
+            to: student.email,
+            subject: '🎉 You are Selected!',
+            text: `Dear ${student.fullname},\n\nCongratulations! You have been selected based on your application.\n\nRegards,\nVocational Team`
+        });
     }
 
-    // Fetch students based on class and stream
-    const students = await Students.find({ class: classType, stream });
-    const boys = students.filter(student => student.gender === 'Male').sort((a, b) => b.marks - a.marks);
-    const girls = students.filter(student => student.gender === 'Female').sort((a, b) => b.marks - a.marks);
+    // res.send('Selected students notified successfully.');
+    res.json({ message: "Selected students notified successfully!👍" });
 
-    // Select top 25 boys and girls
-    const selectedStudents = [...boys.slice(0, 25), ...girls.slice(0, 25)];
-
-    // Send notification emails
-    sendNotificationEmails(selectedStudents);
-    res.status(200).json({ message: 'Notifications sent successfully!' });
-  } catch (error) {
-    console.error('Error sending notifications:', error);
-    res.status(500).json({ error: 'Failed to send notifications' });
-  }
 });
+
+// route to send emails to all applicaticants
+router.post('/send-all-mails', async (req, res) => {
+    const IT9 = await ITNinthClass.find();
+    const IT11 = await ITEleventhClass.find();
+    const Security9 = await SecurityNinthClass.find();
+    const allApplicants = [...IT9, ...IT11, ...Security9];
+
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'astacodeindiabusiness@gmail.com',
+            pass: 'srzbhwlzfzipmxcy'
+        }
+    });
+
+    for (let student of allApplicants) {
+        await transporter.sendMail({
+            from: 'your_email@gmail.com',
+            to: student.email,
+            subject: '📝 Thanks for Applying!',
+            text: `Dear ${student.fullname},\n\nThank you for submitting your application. We appreciate your interest.\n\nRegards,\nVocational Team`
+        });
+    }
+
+    // res.send('All applicants notified successfully.');
+     res.json({ message: "All applicants notified successfully.✅" });
+});
+
 
 // Applications routes
 router.get('/all-applications', (req, res) => {
@@ -219,19 +214,38 @@ router.get('/instructor', (req, res) => {
 
 // Handle form submission for 9th class
 router.post('/9th-portal', async (req, res) => {
-  const { fullname, fathername, rollNumber, marks, stream, gender, email, phone } = req.body;
+  const { fullname, fathername, mothername, gender, category, adhaar, sssmID, dob, rollNumber, marks, stream, email, phone, address } = req.body;
 
   try {
+
+    // Aadhaar duplicate check
+    let existing;
+    if (stream === 'IT') {
+      existing = await ITNinthClass.findOne({ adhaar });
+    } else if (stream === 'security') {
+      existing = await SecurityNinthClass.findOne({ adhaar });
+    }
+
+    if (existing) {
+      return res.redirect('/9th-portal?error=duplicate');
+    }
+
     if (stream === 'IT') {
       const createdUser = await ITNinthClass.create({
         fullname,
         fathername,
+        mothername,
+        gender,
+        category,
+        adhaar,
+        sssmID,
+        dob,
         rollNumber,
         marks,
         stream,
-        gender,
         email,
-        phone
+        phone,
+        address
       });
       // After form submission, render success page
       res.render('form-submitted', { fullname });
@@ -239,11 +253,18 @@ router.post('/9th-portal', async (req, res) => {
       const createdUser = await SecurityNinthClass.create({
         fullname,
         fathername,
+        mothername,
+        gender,
+        category,
+        adhaar,
+        sssmID,
+        dob,
+        rollNumber,
         marks,
         stream,
-        gender,
         email,
-        phone
+        phone,
+        address
       });
       // After form submission, render success page
       res.render('form-submitted', { fullname });
@@ -252,25 +273,47 @@ router.post('/9th-portal', async (req, res) => {
       res.status(400).send("Invalid stream");
     }
   } catch (err) {
-    res.status(500).send(err);
+    if (err.code === 11000) {
+      res.status(400).send("❌ Duplicate Aadhaar entry.");
+    } else {
+      res.status(500).send("❌ Server Error");
+    }
   }
 });
 
 // Handle form submission for 11th class
 router.post('/11th-portal', async (req, res) => {
-  const { fullname, fathername,  marks, stream, gender, email, phone } = req.body;
+  const { fullname, fathername, mothername, gender, category, adhaar, sssmID, dob, rollNumber, marks, stream, email, phone, address } = req.body;
 
   try {
+
+ // Aadhaar duplicate check
+    let existing;
+    if (stream === 'IT') {
+      existing = await ITEleventhClass.findOne({ adhaar });
+    } 
+
+    if (existing) {
+      return res.redirect('/11th-portal?error=duplicate');
+    }
+
+
     if (stream === 'IT') {
       const createdUser = await ITEleventhClass.create({
         fullname,
         fathername,
+        mothername,
+        gender,
+        category,
+        adhaar,
+        sssmID,
+        dob,
         rollNumber,
         marks,
         stream,
-        gender,
         email,
-        phone
+        phone,
+        address
       });
       // After form submission, render success page
       res.render('form-submitted', { fullname });
@@ -279,7 +322,11 @@ router.post('/11th-portal', async (req, res) => {
       res.status(400).send("Invalid stream or class");
     }
   } catch (err) {
-    res.status(500).send(err);
+    if (err.code === 11000) {
+      res.status(400).send("❌ Duplicate Aadhaar entry.");
+    } else {
+      res.status(500).send("❌ Server Error");
+    }
   }
 });
 

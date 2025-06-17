@@ -219,6 +219,7 @@
                 <h1 style="font-size: 3vw; color: white;">Select Class for Data</h1>
             </div>
             <div id="admin-cta">
+                <button class="btn btn-peela" id="all-send-mail">Send Notification to All</button>
                 <button class="btn btn-peela" id="backButton">Back to Admin Panel</button>
             </div>
         </section>
@@ -378,6 +379,39 @@
         document.getElementById("backButton").addEventListener("click", function () {
             window.history.back();
         });
+    </script>
+
+    <!-- for nodemailer connection -->
+    <script>
+        document.getElementById('all-send-mail').addEventListener('click', async (e) => {
+    e.preventDefault();
+
+    const btn = e.target;
+    btn.disabled = true;          // 🛑 disable button
+    btn.innerText = 'Sending... to All'; // 👀 UI feedback
+    btn.style.cursor = 'not-allowed';
+
+    let classType = shuffle === 1 ? '9th' : '11th';
+    let selectedStream = document.getElementById('subject').value;
+
+    try {
+        const res = await fetch('/send-all-mails', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ classType, stream: selectedStream })
+        });
+
+        const data = await res.json();
+        alert(data.message);
+    } catch (err) {
+        console.error('Error:', err);
+        alert("Something went wrong!");
+    } finally {
+        btn.disabled = false;     // ✅ Enable again (if you want)
+        btn.innerText = 'Send Notification';
+         btn.style.cursor = 'pointer';
+    }
+});
     </script>
 
 </body>
