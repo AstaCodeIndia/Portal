@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excellence No-1 Vocational Bhind | Vocational Portal</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="https://kit.fontawesome.com/f87a898598.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        #information-note {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #info-container {
+            width: 60%;
+            height: 60%;
+            border: 2px solid gold;
+            border-radius: 50px;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+        }
+        #info-container h3 {
+            font-size: 1.5vw;
+        }
+
+        #information {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #information h1 {
+            font-size: 3vw;
+        }
+
+        #go-to-home-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #go-to-home-btn a{
+            background-color: #ff0;
+            border: none;
+            padding: 5px 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            color: #000;
+            text-decoration: none;
+            font-size: 1.5vw;
+        }
+
+        #go-to-home-btn a:hover {
+            background-color: #e6e600;
+        }
+        #congratulations{
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+           overflow-y: hidden;
+        }
+
+    </style>
+</head>
+
+<body>
+    <main>
+        <header>
+    <div id="logo"><a href="/">Vocational Portal<br> School Management System</a></div>
+            <button id="show-nav-btn"><i class="fa-solid fa-bars-staggered"></i></button>
+        </header>
+
+
+        <div id="information-note">
+            <img src="/images/congratulations.gif" alt="" id="congratulations" >
+            <div id="info-container">
+                <div id="information">
+                    <h1>Form Submitted Successfully</h1>
+                </div>
+                <h3>Thank you, <%= fullname %>, for submitting the form.</h3>
+                <div id="go-to-home-btn">
+                    <a href="/" class="submitted-btn" id="submitted-btn">Go to Home</a>
+                </div>
+            </div>
+        </div>
+
+
+
+    </main>
+
+
+    <script src="https://unpkg.com/lenis@1.1.5/dist/lenis.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+        integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
+        integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="module" src="/javascripts/main.js"></script>
+    <script>
+        setTimeout(function () {
+                document.getElementById('congratulations').style.display = 'none';
+            }, 2000);
+    </script>
+</body>
+
+</html>

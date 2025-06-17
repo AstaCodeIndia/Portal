@@ -1,0 +1,563 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+main {
+  background-color: #000;
+}
+
+header {
+  height: 80px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 5vw;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.396);
+}
+
+#logo a {
+  font-size: 1.2vw;
+  color: white;
+  text-decoration: none;
+
+}
+
+header button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+header button i {
+  color: white;
+  font-size: 2vw;
+}
+
+nav {
+  width: 40vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.685);
+  backdrop-filter: blur(10px);
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 50px;
+}
+
+#nav-title {
+  display: inline-block;
+  overflow: hidden;
+}
+
+#nav-title h3 {
+  font-size: 1.6vw;
+  color: #E3DB11;
+  font-weight: 200;
+}
+
+nav li {
+  list-style: none;
+}
+
+nav li a {
+  text-decoration: none;
+  font-size: 3.5vw;
+  margin: 20px 0px;
+  font-weight: 600;
+}
+
+nav #social {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  /* height: 30%; */
+  margin-top: 70px;
+}
+
+nav #social #title {
+  font-size: 1.3vw;
+  font-weight: 200;
+}
+
+nav #social #links {
+  display: flex;
+  justify-content: space-between;
+}
+
+nav #social #links li a {
+  font-size: 3vw;
+}
+
+#circle {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  /* justify-content: center; */
+  /* margin-top: 50px; */
+  height: 50%;
+}
+
+#circle button {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: none;
+  border: 4px solid #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#circle button a {
+  font-size: 1.5vw;
+  color: #fff;
+  text-decoration: none;
+}
+
+#circle button::before {
+  content: "";
+  position: absolute;
+  background-color: #E3DB11;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  z-index: -1;
+  transition: all 0.3s linear;
+}
+
+#circle button:hover::before {
+  width: 250px;
+  height: 250px;
+}
+
+#circle button:hover {
+  border: 4px solid #E3DB11;
+
+}
+
+
+/* Hero Section */
+
+#hero {
+  /* position: relative; */
+  width: 100%;
+  height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#hero #main-txt {
+  display: inline-block;
+  overflow: hidden;
+}
+
+#hero #main-txt h1 {
+  font-size: 7.5vw;
+  font-weight: 600;
+}
+
+#hero #sub-txt {
+  display: inline-block;
+  overflow: hidden;
+}
+
+#hero #sub-txt h1 {
+  font-size: 2.5vw;
+  font-weight: 600;
+}
+
+#cta {
+  display: flex;
+  gap: 50px;
+  margin-top: 50px;
+}
+
+button.btn {
+  padding: 15px 80px;
+  /* background: transparent; */
+  font-size: 1.2vw;
+  border-radius: 15px;
+  color: black;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-peela {
+  background-color: #E3DB11;
+  transition: all 0.3s linear;
+  border: 2px #E3DB11;
+  box-shadow: #E3DB11 0px 0px 3px 3px;
+}
+
+.btn-peela a {
+  color: black;
+  text-decoration: none;
+}
+
+.btn-peela:hover {
+  transform: scale(1.05);
+}
+
+.btn-white {
+  border: 2px #fff;
+  background-color: #fff;
+  box-shadow: #fff 0px 0px 3px 3px;
+}
+
+#class-card {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff5b;
+  backdrop-filter: blur(15px);
+  display: none;
+}
+
+#card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  background-color: #DED7B1;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 3vw;
+}
+
+#card-title {
+  display: inline-block;
+  overflow: hidden;
+
+}
+
+#card-title h2 {
+  font-size: 2vw;
+  color: #000;
+}
+
+#choice {
+  gap: 20px;
+  display: flex;
+}
+
+.choice-btn {
+  font-size: 3vw;
+  color: #b0aa00;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 25px;
+  text-decoration: none;
+}
+
+/* Part-2 */
+
+
+#part-2 {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0px 4vw;
+  gap: 20px;
+}
+
+#question {
+  display: inline-block;
+  overflow: hidden;
+}
+
+#question h2 {
+  font-size: 3vw;
+  color: #E3DB11;
+}
+
+#answer {
+  display: inline-block;
+  overflow: hidden;
+}
+
+#answer h2 {
+  font-size: 1.8vw;
+  color: #fff;
+}
+
+    /* Part-3 */
+
+#part-3 {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  /* align-items: center; */
+  justify-content: space-between;
+  padding: 2vw 6vw;
+  flex-direction: column;
+}
+
+#part-3-title {
+  display: inline-block;
+  overflow: hidden;
+}
+
+#part-3-title h1 {
+  font-size: 4.5vw;
+}
+
+#pic-container {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 60px;
+  /* background-color: red; */
+  align-items: center;
+  justify-content: center;
+}
+
+.rec {
+  width: 45%;
+  height: auto;
+  /* background-color: #fff; */
+  overflow: hidden;
+  border-radius: 1.5vw;
+}
+
+.rec img {
+  width: 100%;
+  height: 100%;
+
+}
+
+#part-4 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 2vw 6vw;
+}
+
+#faq-title {
+  display: inline-block;
+  overflow: hidden;
+}
+
+#faq-title h1 {
+  font-size: 4.5vw;
+}
+
+details {
+  width: 90vw;
+  padding: 20px;
+  background-color: #D9D9D9;
+  border-radius: 20px;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  flex-direction: column;
+}
+
+details summary {
+  color: #000;
+  font-size: 1.6vw;
+  font-weight: 500;
+}
+
+details p {
+  color: #000;
+  font-size: 1.2vw;
+  font-weight: 500;
+}
+
+footer {
+  width: 100%;
+  /* height: 25vh; */
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  padding: 2vw 0px;
+}
+
+#footer-title {
+  display: inline-block;
+  overflow: hidden;
+}
+
+#footer-title h1 {
+  font-size: 5vw;
+  color: black;
+}
+
+#footer-title h1 .word .char {
+  color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Portal Styling  */
+
+.portal {
+  width: 100vw;
+  /* height: 100vh; */
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  /* padding: 0vw 2vw; */
+  position: relative;
+  overflow-x: hidden;
+}
+
+.portal-area {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* background-color: red; */
+  padding: 4vw;
+}
+
+.image-wrap {
+  width: 30%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  right: 0;
+}
+
+
+
+.portal-heading {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.portal-heading h2 {
+  font-size: 3vw;
+}
+
+.portal-subheading {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.portal-subheading h3 {
+  font-size: 1.5vw;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0px;
+}
+
+form h3 {
+  color: var(--text-color);
+  font-size: 1.5vw;
+  font-weight: 600;
+  letter-spacing: -1px;
+  position: relative;
+  top: 10px;
+  left: 18%;
+}
+
+form input {
+  position: relative;
+  width: 45%;
+  padding: 28px 25px;
+  background-color: #3333336c;
+  border: 1px solid var(--secondary-color);
+  border-radius: 20px;
+  font-size: 1.6vw;
+  color: var(--text-color);
+  outline: none;
+}
+
+form select {
+  position: relative;
+  width: 45%;
+  padding: 28px 25px;
+  background-color: #3333336c;
+  border: 1px solid var(--secondary-color);
+  border-radius: 20px;
+  font-size: 1.6vw;
+  color: var(--text-color);
+  outline: none;
+}
+
+form label {
+  position: relative;
+  top: 30px;
+  left: 25px;
+  color: white;
+  font-size: .8vw;
+}
+
+form .number {
+  width: 45%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: fit-content;
+  margin-top: 10px;
+  margin-bottom: -7px;
+}
+
+form .number input#code {
+  width: 25%;
+  padding: 25px 10px;
+}
+
+form .number input#phone {
+  width: 70%;
+}
+
+.portal-btn {
+  width: 30%;
+  margin-top: 50px;
+}
+
+.breakers {
+  font-weight: 400;
+  padding-left: 10px;
+  margin: 30px 0;
+  border-bottom: 2px solid #E3DB11;
+  border-left: 2px solid #E3DB11;
+}

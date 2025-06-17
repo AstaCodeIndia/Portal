@@ -1,0 +1,234 @@
+/* For Tablets 1000px - 600px */
+@media screen and (max-width: 900px) {
+    section {
+        margin: 20px 0;
+    }
+
+    #logo a {
+        font-size: 2.3vw;
+    }
+
+    header button i {
+        color: white;
+        font-size: 3vw;
+    }
+
+    #hero {
+        height: 60vmax;
+        /* background-color: red; */
+    }
+
+    #hero #main-txt h1 {
+        font-size: 9vw;
+    }
+
+    #hero #sub-txt h1 {
+        font-size: 2.7vw;
+    }
+
+    #cta {
+        display: flex;
+        gap: 6vw;
+        margin-top: 50px;
+    }
+
+    button.btn {
+        padding: 5px 40px;
+        /* background: transparent; */
+        font-size: 2.4vw;
+        border-radius: 15px;
+        color: black;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+    /* Part-2 */
+
+    #part-2 {
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0px 4vw;
+        gap: 20px;
+    }
+
+    #question h2 {
+        font-size: 5vw;
+        color: #E3DB11;
+    }
+
+    #answer h2 {
+        font-size: 3.5vw;
+        color: #fff;
+    }
+
+    /* Part-3 */
+    #part-3 {
+        width: 100%;
+        height: fit-content;
+        /* background-color: red; */
+        display: flex;
+        /* align-items: center; */
+        justify-content: space-between;
+        padding: 2vw 6vw;
+        flex-direction: column;
+    }
+
+    #part-3-title h1 {
+        font-size: 6vw;
+        margin-bottom: 10px;
+    }
+
+    #pic-container {
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5vw;
+        /* background-color: red; */
+        align-items: center;
+        justify-content: center;
+    }
+
+    .rec {
+        width: 45%;
+        height: auto;
+        overflow: hidden;
+        border-radius: 3vw;
+    }
+
+    /* Card Pop-up */
+
+    #card {
+        width: 50vw;
+        height: 40vw;
+    }
+
+    .choice-btn {
+        font-size: 5vw;
+    }
+
+    #card-title h2 {
+        font-size: 5vw;
+        color: #000;
+    }
+
+    /* Faqs */
+    details summary {
+        color: #000;
+        font-size: 3.6vw;
+        font-weight: 500;
+    }
+
+    details p {
+        color: #000;
+        font-size: 2.4vw;
+        font-weight: 500;
+    }
+
+}
+
+
+/* For Phones 400px */
+@media screen and (max-width: 1000px) {
+    .portal-area {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        /* background-color: red; */
+        padding: 4vw;
+    }
+
+    .image-wrap {
+        display: none;
+    }
+
+    form input,
+    form select {
+        position: relative;
+        width: 65%;
+        padding: 28px 25px;
+        background-color: #3333336c;
+        border: 1px solid var(--secondary-color);
+        border-radius: 20px;
+        font-size: 2.4vw;
+        color: var(--text-color);
+        outline: none;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #logo a {
+        font-size: 3vw;
+    }
+
+    #hero {
+        height: 50vmax;
+        /* background-color: red; */
+    }
+
+    header button i {
+        color: white;
+        font-size: 3vw;
+    }
+
+    #hero #sub-txt h1 {
+        font-size: 3.7vw;
+    }
+
+    button.btn {
+        padding: 8px 40px;
+        /* background: transparent; */
+        font-size: 3vw;
+        border-radius: 15px;
+        color: black;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+    .rec {
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+        border-radius: 3vw;
+    }
+
+    #card {
+        width: 70vw;
+        height: 70vw;
+    }
+
+    .portal-heading h2 {
+        font-size: 6vw;
+    }
+
+    .portal-subheading h3 {
+        font-size: 3.5vw;
+    }
+
+    form label {
+        position: relative;
+        top: 30px;
+        left: 25px;
+        color: white;
+        font-size: 2.8vw;
+    }
+
+    form input,
+    form select {
+        position: relative;
+        width: 100%;
+        padding: 28px 25px;
+        background-color: #3333336c;
+        border: 1px solid var(--secondary-color);
+        border-radius: 20px;
+        font-size: 4vw;
+        color: var(--text-color);
+        outline: none;
+    }
+}

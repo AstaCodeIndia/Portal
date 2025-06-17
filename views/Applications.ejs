@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excellence No-1 Vocational Bhind | Vocational Portal</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="https://kit.fontawesome.com/f87a898598.js" crossorigin="anonymous"></script>
+    <style>
+        #admin-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        #admin-intro {
+            display: inline-block;
+            overflow: hidden;
+            margin: 50px 0px;
+        }
+
+        #admin-intro h1 {
+            font-size: 4vw;
+            color: white;
+        }
+
+        #classes {
+            display: flex;
+            gap: 30px;
+            margin: 50px 0px;
+            position: relative;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 1.2vw;
+            font-weight: bold;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-selected {
+            background-color: #ff0;
+            color: #000;
+        }
+
+        #9th-class,
+        #11th-class {
+            background-color: #fff;
+            color: #000;
+        }
+
+        #student-data-wrapper {
+            width: 95%;
+            /* overflow: hidden; */
+            overflow-x: scroll;
+        }
+
+        #student-data {
+            width: 130vw;
+            overflow-x: auto;
+            display: block;
+        }
+
+        #admin-data-selection {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #D9D9D9;
+            color: black;
+            font-weight: bold;
+            margin-bottom: 50px;
+        }
+
+        #subject {
+            position: relative;
+            width: 10%;
+            padding: 5px 25px;
+            /* background-color: #3333336c; */
+            border: 1px solid var(--secondary-color);
+            border-radius: 20px;
+            font-size: 1.6vw;
+            color: var(--text-color);
+            outline: none;
+            height: 5%;
+        }
+
+        #subject option {
+            color: black;
+        }
+
+        #admin-data-selection h2 {
+            font-size: 1.8vw;
+            font-weight: normal;
+            color: #000;
+        }
+
+        #admin-data {
+            /* width: 100%; */
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .data-field {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            font-weight: normal;
+            font-size: .8vw;
+        }
+
+        .data-field:nth-child(even) {
+            background-color: #444;
+        }
+
+        .remove-btn {
+            background-color: #FF1010;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            color: #000;
+            font-weight: 400;
+            font-size: 1.1vw;
+        }
+
+        .remove-btn:hover {
+            background-color: #cb0b0b;
+        }
+
+        .print-btn {
+            background-color: #30F404;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            color: #000;
+            font-weight: 400;
+            font-size: 1.1vw;
+            position: absolute;
+            right: 20px;
+            /* top: -200px; */
+        }
+
+        .print-btn:hover {
+            background-color: #27c304;
+        }
+
+        #admin-cta {
+            display: flex;
+            gap: 30px;
+            margin: 50px 0px;
+        }
+
+        .btn-peela {
+            background-color: #ff0;
+            color: #000;
+        }
+
+        .btn-peela a {
+            text-decoration: none;
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <header>
+            <div id="logo"><a href="/">Vocational Portal<br> School Management System</a></div>
+            <button id="show-nav-btn"><i class="fa-solid fa-bars-staggered"></i></button>
+        </header>
+
+        <section id="admin-area">
+            <div id="admin-intro">
+                <h1>All Applications</h1>
+            </div>
+            <div id="classes">
+                <button class="btn first-btn" id="9th-class" onclick="loadClassData('9th')">Class 9th</button>
+                <button class="btn second-btn" id="11th-class" onclick="loadClassData('11th')">Class 11th</button>
+                <button class="print-btn" id="print-btn" onclick="Printdata()">Print Data</button>
+            </div>
+            <div id="student-data-wrapper">
+                <div id="student-data">
+
+                    <div id="admin-data-selection">
+                        <h2>Roll No.</h2>
+                        <h2>Student Name</h2>
+                        <h2>Father Name</h2>
+                        <h2>Marks</h2>
+                        <select name="subject" id="subject">
+                            <option value="IT">IT</option>
+                            <option value="security">Security</option>
+                        </select>
+                        <h2>Gender</h2>
+                        <!-- <h2>Remove Entry</h2> -->
+                        <!-- <button class="remove-btn" id="remove-all" onclick="removeAll()">Remove All</button> -->
+                    </div>
+
+                    <div id="admin-data">
+                    </div>
+                </div>
+
+            </div>
+            <div id="admin-note"
+                style="display: flex; width: 100%; height: 100%; align-items: center; justify-content: center;">
+                <h1 style="font-size: 3vw; color: white;">Select Class for Data</h1>
+            </div>
+            <div id="admin-cta">
+                <button class="btn btn-peela" id="backButton">Back to Admin Panel</button>
+            </div>
+        </section>
+
+
+        <footer>
+            <div id="footer-title">
+                <h1>Now it is digital !!!</h1>
+            </div>
+            <button class="btn-peela btn" id="show-class-btn"><a href="/9th-portal">Apply Now</a></button>
+
+        </footer>
+    </main>
+
+
+    <script src="https://unpkg.com/lenis@1.1.5/dist/lenis.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+        integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
+        integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="module" src="/javascripts/main.js"></script>
+
+    <script>
+        let firstBTN = document.querySelector('#classes button.first-btn')
+        let secondBTN = document.querySelector('#classes button.second-btn')
+        let classBTN = document.querySelectorAll('#classes button')
+        let adminNote = document.querySelector('#admin-note')
+        let shuffle = 0;
+
+        firstBTN.addEventListener('click', () => {
+            if (shuffle === 0) {
+                firstBTN.classList.add('btn-selected')
+                secondBTN.classList.remove('btn-selected')
+                shuffle = 1;
+                adminNote.style.visibility = "hidden"
+            }
+        })
+        secondBTN.addEventListener('click', () => {
+            if (shuffle === 1) {
+                secondBTN.classList.add('btn-selected')
+                firstBTN.classList.remove('btn-selected')
+                shuffle = 0;
+                adminNote.style.visibility = "hidden"
+            }
+        })
+    </script>
+
+    <script>
+        // Function to load data for Class 9th or Class 11th based on button click
+        function loadClassData(classType) {
+            let url = `/admin/class-${classType === '9th' ? '9th' : '11th'}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const adminDataDiv = document.getElementById('admin-data');
+                    adminDataDiv.innerHTML = '';  // Clear existing data
+
+                    // Loop through each user and append their details to the page
+                    data.forEach(user => {
+                        const userDiv = document.createElement('div');
+                        userDiv.classList.add('data-field');
+                        userDiv.innerHTML = `
+                    <h2>${user.rollNumber}</h2>
+                    <h2>${user.fullname}</h2>
+                    <h2>${user.fathername}</h2>
+                    <h2>${user.marks}</h2>
+                    <h2>${user.stream}</h2>
+                    <h2>${user.gender}</h2>
+                `;
+                        adminDataDiv.appendChild(userDiv);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        }
+    </script>
+
+    <script>
+        // data for shorting trade wise
+        // code 1: Load class data based on the selected class and stream
+        function loadClassData(classType) {
+            const subjectDropdown = document.getElementById('subject');  // Get the dropdown element
+            let selectedStream = subjectDropdown.value;  // Get the selected stream value
+
+            // Construct the URL based on class type and selected stream
+            let url = `/admin/class-${classType}?stream=${selectedStream}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const adminDataDiv = document.getElementById('admin-data');
+                    adminDataDiv.innerHTML = '';  // Clear existing data
+
+                    // Loop through each user and append their details to the page
+                    data.forEach(user => {
+                        const userDiv = document.createElement('div');
+                        userDiv.classList.add('data-field');
+                        userDiv.innerHTML = `
+                <h2>${user.rollNumber}</h2>
+                <h2>${user.fullname}</h2>
+                <h2>${user.fathername}</h2>
+                <h2>${user.marks}</h2>
+                <h2>${user.stream}</h2>
+                <h2>${user.gender}</h2>
+            `;
+                        adminDataDiv.appendChild(userDiv);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        }
+
+        // code 2: Event listener to handle stream change dynamically based on class
+        document.getElementById('subject').addEventListener('change', function () {
+            // Check which class button is selected (9th or 11th)
+            let classType = shuffle === 1 ? '9th' : '11th';  // Use shuffle to determine which class button is active
+            loadClassData(classType);  // Load class data dynamically
+        });
+
+        // code 3: First button for 9th class
+        firstBTN.addEventListener('click', () => {
+            if (shuffle === 0) {
+                firstBTN.classList.add('btn-selected');
+                secondBTN.classList.remove('btn-selected');
+                shuffle = 1;  // Set shuffle for 9th class
+                adminNote.style.visibility = "hidden";
+
+                // Load IT data by default for 9th class
+                document.getElementById('subject').value = 'IT';  // Set dropdown to IT
+                loadClassData('9th');  // Load data for 9th class
+            }
+        });
+
+        // code 4: Second button for 11th class
+        secondBTN.addEventListener('click', () => {
+            if (shuffle === 1) {
+                secondBTN.classList.add('btn-selected');
+                firstBTN.classList.remove('btn-selected');
+                shuffle = 0;  // Set shuffle for 11th class
+                adminNote.style.visibility = "hidden";
+
+                // Load IT data by default for 11th class
+                document.getElementById('subject').value = 'IT';  // Set dropdown to IT
+                loadClassData('11th');  // Load data for 11th class
+            }
+        });
+    </script>
+
+    <script>
+        // to add back btn functionality
+        document.getElementById("backButton").addEventListener("click", function () {
+            window.history.back();
+        });
+    </script>
+
+</body>
+
+</html>
