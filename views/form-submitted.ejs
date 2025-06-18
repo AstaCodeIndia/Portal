@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Excellence No-1 Vocational Bhind | Vocational Portal</title>
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/responsive.css">
     <script src="https://kit.fontawesome.com/f87a898598.js" crossorigin="anonymous"></script>
     <style>
         * {
@@ -40,6 +41,7 @@
             align-items: center;
             justify-content: space-around;
         }
+
         #info-container h3 {
             font-size: 1.5vw;
         }
@@ -60,7 +62,8 @@
             align-items: center;
             justify-content: center;
         }
-        #go-to-home-btn a{
+
+        #go-to-home-btn a {
             background-color: #ff0;
             border: none;
             padding: 5px 20px;
@@ -74,28 +77,89 @@
         #go-to-home-btn a:hover {
             background-color: #e6e600;
         }
-        #congratulations{
+
+        #congratulations {
             width: 100vw;
             height: 100vh;
             position: absolute;
             top: 0;
             left: 0;
-           overflow-y: hidden;
+            overflow-y: hidden;
         }
 
+        @media screen and (Max-width: 900px) {
+            body {
+                overflow: hidden;
+                background-color: #000;
+            }
+
+            #information-note {
+                width: 100vw;
+                height: 60vmax;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            #info-container {
+                width: 60%;
+                height: 40%;
+                border: 2px solid gold;
+                border-radius: 50px;
+                padding: 50px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            #information h1 {
+                font-size: 4vw;
+            }
+
+            #info-container h3 {
+                font-size: 3vw;
+            }
+
+            #go-to-home-btn a {
+                background-color: #ff0;
+                border: none;
+                padding: 5px 20px;
+                border-radius: 15px;
+                cursor: pointer;
+                color: #000;
+                text-decoration: none;
+                font-size: 2.5vw;
+            }
+
+        }
+
+        @media screen and (Max-width: 600px) {
+            #info-container {
+                width: 80%;
+                height: 30vmax;
+                border: 2px solid gold;
+                border-radius: 50px;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+            }
+        }
     </style>
 </head>
 
 <body>
     <main>
         <header>
-    <div id="logo"><a href="/">Vocational Portal<br> School Management System</a></div>
+            <div id="logo"><a href="/">Vocational Portal<br> School Management System</a></div>
             <button id="show-nav-btn"><i class="fa-solid fa-bars-staggered"></i></button>
         </header>
 
 
         <div id="information-note">
-            <img src="/images/congratulations.gif" alt="" id="congratulations" >
+            <img src="/images/congratulations.gif" alt="" id="congratulations">
             <div id="info-container">
                 <div id="information">
                     <h1>Form Submitted Successfully</h1>
@@ -123,8 +187,8 @@
     <script type="module" src="/javascripts/main.js"></script>
     <script>
         setTimeout(function () {
-                document.getElementById('congratulations').style.display = 'none';
-            }, 2000);
+            document.getElementById('congratulations').style.display = 'none';
+        }, 2000);
     </script>
 </body>
 

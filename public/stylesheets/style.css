@@ -308,7 +308,7 @@ button.btn {
   color: #fff;
 }
 
-    /* Part-3 */
+/* Part-3 */
 
 #part-3 {
   width: 100%;
@@ -418,6 +418,27 @@ footer {
 
 #footer-title h1 .word .char {
   color: black;
+}
+
+.credits {
+  width: 100%;
+  border-top: 2px solid #E3DB11;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px;
+  height: fit-content;
+}
+
+.credits h2 {
+  color: black;
+  font-weight: 400;
+  font-size: 1.2vw;
+}
+
+.credits h2 a {
+  color: #fb503a;
+  font-weight: 500;
 }
 
 
@@ -551,6 +572,9 @@ form .number input#phone {
 
 .portal-btn {
   width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 50px;
 }
 
@@ -562,10 +586,31 @@ form .number input#phone {
   border-left: 2px solid #E3DB11;
 }
 
-/* .credits h2{
-  color: black;
-  font-weight: 400;
+.confirmation {
+  display: flex;
+  width: fit-content;
+  align-items: flex-start;
+  gap: 1.7vw;
+  height: 60px;
+  padding: 65px 10px;
+  padding-top: 30px;
 }
-.credits h2 a{
-  color: goldenrod;
-} */
+
+.confirmation input {
+  width: fit-content;
+  width: 55px;
+  height: 55px;
+  display: inline-block;
+  accent-color: #E3DB11;
+  border-radius: 0.5rem;
+
+
+}
+
+.confirmation h2 {
+  /* background-color: green; */
+  display: inline-block;
+  font-size: 1.25vw;
+  font-weight: 400;
+  opacity: 80%;
+}

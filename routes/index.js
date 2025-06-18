@@ -69,20 +69,29 @@ router.get('/admin/class-11th', async (req, res, next) => {
 
 // to get csv print
 router.get('/download-csv', async (req, res) => {
-  const { gender, classType, streamType } = req.query;
+  const { gender, classType, streamType, mode } = req.query;
 
   try {
     let users;
+    let queryOptions = { gender};
 
-    // Check class and stream to fetch appropriate data
+     // Choose the right model based on class and stream
+    let model
     if (classType === '9th' && streamType === 'IT') {
-      users = await ITNinthClass.find({ gender });
-    } else if (classType === '9th' && streamType === 'Security') {
-      users = await SecurityNinthClass.find({ gender });
+      model = ITNinthClass;
+    } else if (classType === '9th' && streamType === 'security') {
+       model = SecurityNinthClass;
     } else if (classType === '11th' && streamType === 'IT') {
-      users = await ITEleventhClass.find({ gender });
+      model = ITEleventhClass;
     } else {
       return res.status(400).send("Invalid class or stream type.");
+    }
+
+     // Apply limit and sorting only if mode is 'selected'
+    if (mode === 'selected') {
+      users = await model.find(queryOptions).sort({ marks: -1 }).limit(25);
+    } else {
+      users = await model.find(queryOptions);
     }
 
     // Send the user data as JSON to the frontend
@@ -328,6 +337,11 @@ router.post('/11th-portal', async (req, res) => {
       res.status(500).send("❌ Server Error");
     }
   }
+});
+
+// 404 Page (ye sabse last me hona chahiye)
+router.use((req, res) => {
+  res.status(404).render('404'); // render views/404.ejs
 });
 
 module.exports = router;

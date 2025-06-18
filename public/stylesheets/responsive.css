@@ -129,6 +129,14 @@
         font-weight: 500;
     }
 
+
+    .confirmation h2 {
+        /* background-color: green; */
+        display: inline-block;
+        font-size: 1.7vw;
+        font-weight: 500;
+    }
+
 }
 
 
@@ -159,6 +167,12 @@
         font-size: 2.4vw;
         color: var(--text-color);
         outline: none;
+    }
+
+    .credits h2 {
+        color: black;
+        font-weight: 400;
+        font-size: 2vw;
     }
 }
 
@@ -230,5 +244,34 @@
         font-size: 4vw;
         color: var(--text-color);
         outline: none;
+    }
+
+    .credits {
+        width: 100%;
+        border-top: 2px solid #E3DB11;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 20px;
+        height: fit-content;
+        flex-direction: column;
+    }
+
+    .credits h2 {
+        color: black;
+        font-weight: 400;
+        font-size: 2.8vw;
+    }
+
+    .credits h2 a {
+        color: #fb503a;
+        font-weight: 500;
+    }
+
+    .confirmation h2 {
+        /* background-color: green; */
+        display: inline-block;
+        font-size: 2.5vw;
+        font-weight: 500;
     }
 }

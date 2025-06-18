@@ -311,8 +311,8 @@
                 <h1>Admin Panel</h1>
             </div>
             <div id="classes">
-                <button class="btn first-btn" id="9th-class" onclick="loadClassData('9th')">Class 9th</button>
-                <button class="btn second-btn" id="11th-class" onclick="loadClassData('11th')">Class 11th</button>
+                <button class="btn first-btn" id="9th-class" onclick="loadClassDataAdmin('9th')">Class 9th</button>
+                <button class="btn second-btn" id="11th-class" onclick="loadClassDataAdmin('11th')">Class 11th</button>
                 <button class="print-btn" id="download-csv">Print Data</button>
             </div>
             <div id="student-data-wrapper">
@@ -408,7 +408,7 @@
 
     <script>
         // Function to load data for Class 9th or Class 11th based on button click
-        function loadClassData(classType) {
+        function loadClassDataAdmin(classType) {
             let url = `/admin/class-${classType === '9th' ? '9th' : '11th'}`;
 
             fetch(url)
@@ -468,7 +468,7 @@
     <script>
         // data for shorting trade wise
         // code 1: Load class data based on the selected class and stream
-        function loadClassData(classType) {
+        function loadClassDataAdmin(classType) {
             const subjectDropdown = document.getElementById('subject');  // Get the dropdown element
             let selectedStream = subjectDropdown.value;  // Get the selected stream value
 
@@ -506,7 +506,7 @@
         document.getElementById('subject').addEventListener('change', function () {
             // Check which class button is selected (9th or 11th)
             let classType = shuffle === 1 ? '9th' : '11th';  // Use shuffle to determine which class button is active
-            loadClassData(classType);  // Load class data dynamically
+            loadClassDataAdmin(classType);  // Load class data dynamically
         });
 
         // code 3: First button for 9th class
@@ -580,20 +580,20 @@
 
 
             // Download boys CSV
-            fetch(`/download-csv?gender=Male&classType=${classType}&streamType=${streamType}`)
+            fetch(`/download-csv?gender=Male&classType=${classType}&streamType=${streamType}&mode=selected`)
                 .then(response => response.json())
                 .then(boysData => {
                     const boysCSV = convertToCSV(boysData);
-                    const boysFilename = `${classType}-${streamType}-Boys.csv`;
+                    const boysFilename = `${classType}-${streamType}-Boys-Shorted.csv`;
                     downloadCSV(boysCSV, boysFilename);
                 });
 
             // Download girls CSV
-            fetch(`/download-csv?gender=Female&classType=${classType}&streamType=${streamType}`)
+            fetch(`/download-csv?gender=Female&classType=${classType}&streamType=${streamType}&mode=selected`)
                 .then(response => response.json())
                 .then(girlsData => {
                     const girlsCSV = convertToCSV(girlsData);
-                    const girlsFilename = `${classType}-${streamType}-Girls.csv`;
+                    const girlsFilename = `${classType}-${streamType}-Girls-Shorted.csv`;
                     downloadCSV(girlsCSV, girlsFilename);
                 });
         });

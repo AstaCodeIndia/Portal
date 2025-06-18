@@ -188,9 +188,9 @@
                 <h1>All Applications</h1>
             </div>
             <div id="classes">
-                <button class="btn first-btn" id="9th-class" onclick="loadClassData('9th')">Class 9th</button>
-                <button class="btn second-btn" id="11th-class" onclick="loadClassData('11th')">Class 11th</button>
-                <button class="print-btn" id="print-btn" onclick="Printdata()">Print Data</button>
+                <button class="btn first-btn" id="9th-class" onclick="loadClassDataAll('9th')">Class 9th</button>
+                <button class="btn second-btn" id="11th-class" onclick="loadClassDataAll('11th')">Class 11th</button>
+                <button class="print-btn" id="download-csv">Print Data</button>
             </div>
             <div id="student-data-wrapper">
                 <div id="student-data">
@@ -272,8 +272,8 @@
 
     <script>
         // Function to load data for Class 9th or Class 11th based on button click
-        function loadClassData(classType) {
-            let url = `/admin/class-${classType === '9th' ? '9th' : '11th'}`;
+        function loadClassDataAll(classType) {
+            let url = `/all-applications/class-${classType === '9th' ? '9th' : '11th'}`;
 
             fetch(url)
                 .then(response => response.json())
@@ -305,12 +305,12 @@
     <script>
         // data for shorting trade wise
         // code 1: Load class data based on the selected class and stream
-        function loadClassData(classType) {
+        function loadClassDataAll(classType) {
             const subjectDropdown = document.getElementById('subject');  // Get the dropdown element
             let selectedStream = subjectDropdown.value;  // Get the selected stream value
 
             // Construct the URL based on class type and selected stream
-            let url = `/admin/class-${classType}?stream=${selectedStream}`;
+            let url = `/all-applications/class-${classType}?stream=${selectedStream}`;
 
             fetch(url)
                 .then(response => response.json())
@@ -342,7 +342,7 @@
         document.getElementById('subject').addEventListener('change', function () {
             // Check which class button is selected (9th or 11th)
             let classType = shuffle === 1 ? '9th' : '11th';  // Use shuffle to determine which class button is active
-            loadClassData(classType);  // Load class data dynamically
+            loadClassDataAll(classType);  // Load class data dynamically
         });
 
         // code 3: First button for 9th class
@@ -412,6 +412,69 @@
          btn.style.cursor = 'pointer';
     }
 });
+    </script>
+
+ <!-- for csv print setup -->
+    <script>
+        // Attach event listener to the Print button
+        document.getElementById('download-csv').addEventListener('click', () => {
+            const classType = shuffle === 1 ? '9th' : '11th';  // Check selected class
+            const streamType = document.getElementById('subject').value;  // Get selected stream
+
+
+            // Download boys CSV
+            fetch(`/download-csv?gender=Male&classType=${classType}&streamType=${streamType}&mode=all`)
+                .then(response => response.json())
+                .then(boysData => {
+                    const boysCSV = convertToCSV(boysData);
+                    const boysFilename = `${classType}-${streamType}-Boys-All.csv`;
+                    downloadCSV(boysCSV, boysFilename);
+                });
+
+            // Download girls CSV
+            fetch(`/download-csv?gender=Female&classType=${classType}&streamType=${streamType}&mode=all`)
+                .then(response => response.json())
+                .then(girlsData => {
+                    const girlsCSV = convertToCSV(girlsData);
+                    const girlsFilename = `${classType}-${streamType}-Girls-All.csv`;
+                    downloadCSV(girlsCSV, girlsFilename);
+                });
+        });
+
+        // Function to convert JSON data to CSV
+        function convertToCSV(data) {
+            // Ensure data is not empty
+            if (data.length === 0) return '';
+
+            // Prepare CSV header
+            const csvHeader = 'Full Name,Father\'s Name,Mother\'s Name,Gender,Category,Aadhaar Number,Samagra ID,Date of Birth,Roll Number,Marks,Stream,Email Address,Phone Number,Address';
+            const csvRows = data.map(row => {
+                const { _id, __v, ...rest } = row;  // Destructure and exclude _id and __v
+
+                // Convert DOB from "yyyy-mm-dd" to "dd-mm-yyyy"
+                function formatDOBToDDMMYYYY(dateString) {
+                    const date = new Date(dateString);
+                    const day = String(date.getDate()).padStart(2, '0');
+                    const month = String(date.getMonth() + 1).padStart(2, '0');
+                    const year = date.getFullYear();
+                    return `="${day}-${month}-${year}"`;
+                }
+
+                return `${rest.fullname},${rest.fathername},${rest.mothername},${rest.gender},${rest.category},${rest.adhaar},${rest.sssmID},${formatDOBToDDMMYYYY(rest.dob)},${rest.rollNumber},${rest.marks},${rest.stream},${rest.email},${rest.phone},${rest.address}`;
+            });
+
+            // Join header and rows
+            return [csvHeader, ...csvRows].join('\n');
+        }
+
+        // Function to trigger CSV download
+        function downloadCSV(csv, filename) {
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+        }
     </script>
 
 </body>

@@ -2,213 +2,256 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Class 11th Portal | Excellence No-1 Vocational Bhind | Vocational Portal</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
-    <link rel="stylesheet" href="/stylesheets/responsive.css">
-    <script src="https://kit.fontawesome.com/f87a898598.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class 11th Portal | Excellence No-1 Vocational Bhind | Vocational Portal</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="/stylesheets/responsive.css">
+  <script src="https://kit.fontawesome.com/f87a898598.js" crossorigin="anonymous"></script>
 
 </head>
 
+<style>
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    /* white icon for dark theme */
+    cursor: pointer;
+  }
+</style>
+
 <body>
-    <main>
-        <header>
-            <div id="logo"><a href="/">Vocational Portal<br> School Management System</a></div>
-            <button id="show-nav-btn"><i class="fa-solid fa-bars-staggered"></i></button>
-        </header>
+  <main>
+    <header>
+      <div id="logo"><a href="/">Vocational Portal<br> School Management System</a></div>
+      <button id="show-nav-btn"><i class="fa-solid fa-bars-staggered"></i></button>
+    </header>
 
-        <section class="portal">
-            <div class="portal-area">
-                <div class="portal-heading">
-                    <h2>Fill Form for Class 11th.</h2>
-                </div>
-                <div class="portal-subheading">
-                    <h3>Join the sector.</h3>
-                </div>
-                <form action="/11th-portal" method="post" id="form-11th">
-                     <!-- Personal Information< -->
+    <section class="portal">
+      <div class="portal-area">
+        <div class="portal-heading">
+          <h2>Fill Form for Class 11th.</h2>
+        </div>
+        <div class="portal-subheading">
+          <h3>Join the sector.</h3>
+        </div>
+        <form action="/11th-portal" method="post" id="form-11th">
+          <!-- Personal Information< -->
 
-                    <h2 class="breakers">Personal Information</h2>
-                    <label for="fullname">Full Name</label>
-                    <input type="text" name="fullname" id="fullname" placeholder="Enter Your Full Name">
-                    <label for="fathername">Father Name</label>
-                    <input type="text" name="fathername" id="fathername" placeholder="Enter Your Father Name">
-                    <label for="fathername">Mother Name</label>
-                    <input type="text" name="mothername" id="mothername" placeholder="Enter Your Mother Name">
-                    <label for="gender">Gender</label>
-                    <select name="gender" id="gender">
-                        <option value="" selected disabled hidden style="opacity: 60%;">Select your gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                    </select>
-                    <label for="category">Category</label>
-                    <select name="category" id="category">
-                        <option value="" selected disabled hidden style="opacity: 60%;">Select your category</option>
-                        <option value="General">General</option>
-                        <option value="OBC">OBC</option>
-                        <option value="SC">SC</option>
-                        <option value="ST">ST</option>
-                    </select>
-                    <label for="adhaar">Adhaar No.</label>
-                    <input type="text" name="adhaar" id="adhaar" maxlength="12" pattern="\d{12}" placeholder="Enter Your Adhaar No.">
-                    <label for="sssmID">Samagra ID</label>
-                    <input type="text" name="sssmID" id="sssmID" maxlength="9" pattern="\d{9}" placeholder="Enter Your Samagra ID">
-                    <label for="dob">Date of Birth</label>
-                    <input type="date" name="dob" id="dob" placeholder="Enter Your Samagra ID">
+          <h2 class="breakers">Personal Information</h2>
+          <label for="fullname">Full Name</label>
+          <input type="text" name="fullname" id="fullname" placeholder="Enter Your Full Name">
+          <label for="fathername">Father Name</label>
+          <input type="text" name="fathername" id="fathername" placeholder="Enter Your Father Name">
+          <label for="fathername">Mother Name</label>
+          <input type="text" name="mothername" id="mothername" placeholder="Enter Your Mother Name">
+          <label for="gender">Gender</label>
+          <select name="gender" id="gender">
+            <option value="" selected disabled hidden style="opacity: 60%;">Select your gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+          <label for="category">Category</label>
+          <select name="category" id="category">
+            <option value="" selected disabled hidden style="opacity: 60%;">Select your category</option>
+            <option value="General">General</option>
+            <option value="OBC">OBC</option>
+            <option value="SC">SC</option>
+            <option value="ST">ST</option>
+          </select>
+          <label for="adhaar">Adhaar No.</label>
+          <input type="text" name="adhaar" id="adhaar" maxlength="12" pattern="\d{12}"
+            placeholder="Enter Your Adhaar No.">
+          <label for="sssmID">Samagra ID</label>
+          <input type="text" name="sssmID" id="sssmID" maxlength="9" pattern="\d{9}"
+            placeholder="Enter Your Samagra ID">
+          <label for="dob">Date of Birth</label>
+          <input type="date" name="dob" id="dob" placeholder="Enter Your Samagra ID">
 
-                    <!-- Academic Information -->
+          <!-- Academic Information -->
 
-                    <h2 class="breakers">Academic Information</h2>
-                    <label for="rollNumber"> Roll Number</label>
-                    <input type="text" name="rollNumber" id="rollNumber" minlength="5" pattern="\d{5,}" placeholder="Enter Your Roll Number">
-                    <label for="marks">Marks Obtained</label>
-                    <input type="text" name="marks" id="marks" pattern="\d+" placeholder="Enter Your Marks Obtained">
-                    <label for="stream">Stream</label>
-                    <select name="stream" id="stream">
-                        <option value="" selected disabled hidden style="opacity: 60%;">Select your preference</option>
-                        <option value="IT">Information Technology</option>
-                        <!-- <option value="security">Security</option> -->
-                    </select>
+          <h2 class="breakers">Academic Information</h2>
+          <label for="rollNumber"> Roll Number</label>
+          <input type="text" name="rollNumber" id="rollNumber" minlength="5" pattern="\d{5,}"
+            placeholder="Enter Your Roll Number">
+          <label for="marks">Marks Obtained</label>
+          <input type="text" name="marks" id="marks" pattern="\d+" placeholder="Enter Your Marks Obtained">
+          <label for="stream">Stream</label>
+          <select name="stream" id="stream">
+            <option value="" selected disabled hidden style="opacity: 60%;">Select your preference</option>
+            <option value="IT">Information Technology</option>
+            <!-- <option value="security">Security</option> -->
+          </select>
 
-                    <!-- Contact Information -->
-                    <h2 class="breakers">Contact Information</h2>
+          <!-- Contact Information -->
+          <h2 class="breakers">Contact Information</h2>
 
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email" placeholder="Enter Your Email">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" name="phone" id="phone" maxlength="10" pattern="\d{10}" placeholder="e.g. +91 7566888870">
-                    <label for="address">Address</label>
-                    <input type="text" name="address" id="address" placeholder="Enter Your Address">
-                    <button class="btn-peela btn portal-btn" id="submit" type="submit">Apply</button>
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" placeholder="Enter Your Email">
+          <label for="phone">Phone Number</label>
+          <input type="tel" name="phone" id="phone" maxlength="10" pattern="\d{10}" placeholder="e.g. +91 7566888870">
+          <label for="address">Address</label>
+          <input type="text" name="address" id="address" placeholder="Enter Your Address">
+          <div class="confirmation">
+            <input type="checkbox" name="checkbox" id="checkbox">
+            <h2> I hereby declare that the information provided above is true and correct to the best of my knowledge. I
+              understand that providing false or misleading information may lead to rejection of my application or
+              cancellation of admission.</h2>
+                  
+          </div>
+          <button class="btn-peela btn portal-btn" id="submit" type="submit">Apply</button>
 
-                </form>
-            </div>
-            <div class="image-wrap">
-                <img src="/images/Portal-img-1.jpg" alt="">
-            </div>
-        </section>
-
-
-
-
-        <footer>
-            <div id="footer-title">
-                <h1>Now it is digital !!!</h1>
-            </div>
-            <button class="btn-peela btn" id="show-class-btn"><a href="/9th-portal">Apply Now</a></button>
-
-        </footer>
-    </main>
+        </form>
+      </div>
+      <div class="image-wrap">
+        <img src="/images/Portal-img-1.jpg" alt="">
+      </div>
+    </section>
 
 
-    <script src="https://unpkg.com/lenis@1.1.5/dist/lenis.min.js"></script>
-    <script src="https://unpkg.com/split-type"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
-        integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
-        integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script type="module" src="/javascripts/main.js"></script>
-    <script>
-    </script>
 
-    <!-- To Preevent multiple submission -->
-     <script>
-        document.getElementById('form-11th').addEventListener('submit', function (e) {
-    const btn = document.getElementById('submit');
-    
-    // Disable the button to prevent multiple submissions
-    btn.disabled = true;
-    btn.innerText = 'Submitting...';
-    btn.style.cursor = 'not-allowed';
-    
-    // 🧠 Do NOT preventDefault unless you're handling submit manually via AJAX
-    // Let the form naturally submit to the server (for redirect to thankyou)
-});
 
-     </script>
+    <footer>
+      <div id="footer-title">
+        <h1>Now it is digital !!!</h1>
+      </div>
+      <button class="btn-peela btn" id="show-class-btn"><a href="/9th-portal">Apply Now</a></button>
+      <div class="credits">
+        <h2>Managed by Vocatioal Trade IT</h2>
+        <h2>Designed and Developed by <a href="https://www.instagram.com/itzsumit_2908" target="_blank">Sumit Sharma</a>
+          & <a href="https://www.instagram.com/rudra.aksh9598" target="_blank">Rohit Argal</a></h2>
+      </div>
 
-     <!-- Adhaar validation -->
-<script>
-  const urlParams = new URLSearchParams(window.location.search);
-  const error = urlParams.get('error');
-  if (error === 'duplicate') {
-    alert("❌ Aadhaar already used. Only one submission allowed.");
-    window.location.href = "/11th-portal"; // reload clean page after alert
-    form.reset();
-  }
-</script>
+    </footer>
+  </main>
 
-<!-- Form Number fields real time JS -->
-<script>
-  const onlyDigits = (event) => {
-    const input = event.target;
-    input.value = input.value.replace(/\D/g, ''); // Remove non-digits
-  };
 
-  // Attach to all numeric fields
-  document.getElementById('adhaar').addEventListener('input', onlyDigits);
-  document.getElementById('sssmID').addEventListener('input', onlyDigits);
-  document.getElementById('rollNumber').addEventListener('input', onlyDigits);
-  document.getElementById('marks').addEventListener('input', onlyDigits);
-  document.getElementById('phone').addEventListener('input', onlyDigits);
-</script>
+  <script src="https://unpkg.com/lenis@1.1.5/dist/lenis.min.js"></script>
+  <script src="https://unpkg.com/split-type"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+    integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
+    integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="module" src="/javascripts/main.js"></script>
+  <script>
+  </script>
 
-<!-- Form Numeric fields custom message -->
- <script>
-  const adhaar = document.getElementById('adhaar');
-  const sssmID = document.getElementById('sssmID');
-  const rollNumber = document.getElementById('rollNumber');
-  const marks = document.getElementById('marks');
-  const phone = document.getElementById('phone');
+  <!-- To prevent thankyou page back btn -->
+  <script>
+    window.addEventListener("pageshow", function (event) {
+      if (event.persisted || window.performance.getEntriesByType("navigation")[0].type === "back_forward") {
+        const form = document.querySelector("form");
+        if (form) form.reset();
+      }
+    });
+  </script>
 
-  adhaar.addEventListener('input', function () {
-    const val = adhaar.value;
-    if (!/^\d{12}$/.test(val)) {
-      adhaar.setCustomValidity("Aadhaar number must be exactly 12 digits.");
-    } else {
-      adhaar.setCustomValidity("");
+  <!-- To Preevent multiple submission and deceleration checkbox -->
+  <script>
+    document.getElementById('form-11th').addEventListener('submit', function (e) {
+      const checkbox = document.getElementById("checkbox");
+      const btn = document.getElementById('submit');
+
+      if (!checkbox.checked) {
+        e.preventDefault(); // Stop form submission
+        alert("⚠️Please agree to the declaration before submitting the form.");
+
+        // Reset button text if already changed
+        submitBtn.innerText = "Submit";
+        submitBtn.disabled = false;
+        return; // exit early
+      }
+
+      // ✅ Validation passed, now show submitting text
+      submitBtn.innerText = "Submitting...";
+      submitBtn.disabled = true;
+
+      // 🧠 Do NOT preventDefault unless you're handling submit manually via AJAX
+      // Let the form naturally submit to the server (for redirect to thankyou)
+    });
+
+  </script>
+
+  <!-- Adhaar validation -->
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const error = urlParams.get('error');
+    if (error === 'duplicate') {
+      alert("❌ Aadhaar already exist. You have already Applied.");
+      window.location.href = "/11th-portal"; // reload clean page after alert
+      form.reset();
     }
-  });
+  </script>
 
-  sssmID.addEventListener('input', function () {
-    const val = sssmID.value;
-    if (!/^\d{9}$/.test(val)) {
-      sssmID.setCustomValidity("Samagra ID must be exactly 9 digits.");
-    } else {
-      sssmID.setCustomValidity("");
-    }
-  });
+  <!-- Form Number fields real time JS -->
+  <script>
+    const onlyDigits = (event) => {
+      const input = event.target;
+      input.value = input.value.replace(/\D/g, ''); // Remove non-digits
+    };
 
-  rollNumber.addEventListener('input', function () {
-    const val = rollNumber.value;
-    if (!/^\d{5,}$/.test(val)) {
-      rollNumber.setCustomValidity("Roll Number must be atleast 5 digits.");
-    } else {
-      rollNumber.setCustomValidity("");
-    }
-  });
+    // Attach to all numeric fields
+    document.getElementById('adhaar').addEventListener('input', onlyDigits);
+    document.getElementById('sssmID').addEventListener('input', onlyDigits);
+    document.getElementById('rollNumber').addEventListener('input', onlyDigits);
+    document.getElementById('marks').addEventListener('input', onlyDigits);
+    document.getElementById('phone').addEventListener('input', onlyDigits);
+  </script>
 
-  marks.addEventListener('input', function () {
-    const val = Number(marks.value);
-    if (isNaN(val) || val < 0 || val > 100) {
-      marks.setCustomValidity("Marks must be between 0 and 100 only.");
-    } else {
-      marks.setCustomValidity("");
-    }
-  });
-  
-  phone.addEventListener('input', function () {
-  const val = phone.value;
-  if (!/^\d{10}$/.test(val)) {
-    phone.setCustomValidity("Phone number must be exactly 10 digits.");
-  } else {
-    phone.setCustomValidity("");
-  }
-});
-</script>
+  <!-- Form Numeric fields custom message -->
+  <script>
+    const adhaar = document.getElementById('adhaar');
+    const sssmID = document.getElementById('sssmID');
+    const rollNumber = document.getElementById('rollNumber');
+    const marks = document.getElementById('marks');
+    const phone = document.getElementById('phone');
+
+    adhaar.addEventListener('input', function () {
+      const val = adhaar.value;
+      if (!/^\d{12}$/.test(val)) {
+        adhaar.setCustomValidity("Aadhaar number must be exactly 12 digits.");
+      } else {
+        adhaar.setCustomValidity("");
+      }
+    });
+
+    sssmID.addEventListener('input', function () {
+      const val = sssmID.value;
+      if (!/^\d{9}$/.test(val)) {
+        sssmID.setCustomValidity("Samagra ID must be exactly 9 digits.");
+      } else {
+        sssmID.setCustomValidity("");
+      }
+    });
+
+    rollNumber.addEventListener('input', function () {
+      const val = rollNumber.value;
+      if (!/^\d{5,}$/.test(val)) {
+        rollNumber.setCustomValidity("Roll Number must be atleast 5 digits.");
+      } else {
+        rollNumber.setCustomValidity("");
+      }
+    });
+
+    marks.addEventListener('input', function () {
+      const val = Number(marks.value);
+      if (isNaN(val) || val < 0 || val > 100) {
+        marks.setCustomValidity("Marks must be between 0 and 100 only.");
+      } else {
+        marks.setCustomValidity("");
+      }
+    });
+
+    phone.addEventListener('input', function () {
+      const val = phone.value;
+      if (!/^\d{10}$/.test(val)) {
+        phone.setCustomValidity("Phone number must be exactly 10 digits.");
+      } else {
+        phone.setCustomValidity("");
+      }
+    });
+  </script>
 
 </body>
 

@@ -17,7 +17,7 @@ const ninthclassSchema = new mongoose.Schema({
     // unique: true,
   },
   sssmID: String,
-  dob: Date,
+  dob: String,
   rollNumber: String,
   marks: Number,
   stream: String,
