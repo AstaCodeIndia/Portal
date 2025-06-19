@@ -75,7 +75,7 @@
           <input required type="text" name="rollNumber" id="rollNumber" minlength="5" pattern="\d{5,}"
             placeholder="Enter Your Roll Number">
           <label for="marks">Marks Obtained</label>
-          <input required type="text" name="marks" id="marks" pattern="\d+" placeholder="Enter Your Marks Obtained">
+          <input required type="text" name="marks" id="marks" pattern="\d+" placeholder="% in Round Figure">
           <label for="stream">Stream</label>
           <select required name="stream" id="stream">
             <option value="" selected disabled hidden style="opacity: 60%;">Select your preference</option>
@@ -239,12 +239,16 @@
 
     marks.addEventListener('input', function () {
       const val = Number(marks.value);
-      if (isNaN(val) || val < 0 || val >= 100) {
+      if (isNaN(val) || val < 0 || val > 100) {
         marks.setCustomValidity("Marks must be between 0 and 100 only.");
       } else {
         marks.setCustomValidity("");
       }
     });
+
+
+
+
 
     phone.addEventListener('input', function () {
       const val = phone.value;
