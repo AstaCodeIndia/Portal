@@ -34,24 +34,25 @@
         <div class="portal-subheading">
           <h3>Join the sector.</h3>
         </div>
-        <form action="/11th-portal" method="post" id="form-11th">
+        <form action="/11th-portal" method="post" id="form-11th" autocomplete="off">
+
           <!-- Personal Information< -->
 
           <h2 class="breakers">Personal Information</h2>
           <label for="fullname">Full Name</label>
-          <input type="text" name="fullname" id="fullname" placeholder="Enter Your Full Name">
+          <input type="text" name="fullname" required id="fullname" placeholder="Enter Your Full Name">
           <label for="fathername">Father Name</label>
-          <input type="text" name="fathername" id="fathername" placeholder="Enter Your Father Name">
+          <input type="text" required name="fathername" id="fathername" placeholder="Enter Your Father Name">
           <label for="fathername">Mother Name</label>
-          <input type="text" name="mothername" id="mothername" placeholder="Enter Your Mother Name">
+          <input type="text" required name="mothername" id="mothername" placeholder="Enter Your Mother Name">
           <label for="gender">Gender</label>
-          <select name="gender" id="gender">
+          <select name="gender" required id="gender">
             <option value="" selected disabled hidden style="opacity: 60%;">Select your gender</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
           <label for="category">Category</label>
-          <select name="category" id="category">
+          <select required name="category" id="category">
             <option value="" selected disabled hidden style="opacity: 60%;">Select your category</option>
             <option value="General">General</option>
             <option value="OBC">OBC</option>
@@ -59,24 +60,24 @@
             <option value="ST">ST</option>
           </select>
           <label for="adhaar">Adhaar No.</label>
-          <input type="text" name="adhaar" id="adhaar" maxlength="12" pattern="\d{12}"
+          <input required type="text" name="adhaar" id="adhaar" maxlength="12" pattern="\d{12}"
             placeholder="Enter Your Adhaar No.">
           <label for="sssmID">Samagra ID</label>
-          <input type="text" name="sssmID" id="sssmID" maxlength="9" pattern="\d{9}"
+          <input required type="text" name="sssmID" id="sssmID" maxlength="9" pattern="\d{9}"
             placeholder="Enter Your Samagra ID">
           <label for="dob">Date of Birth</label>
-          <input type="date" name="dob" id="dob" placeholder="Enter Your Samagra ID">
+          <input required type="date" name="dob" id="dob">
 
           <!-- Academic Information -->
 
           <h2 class="breakers">Academic Information</h2>
           <label for="rollNumber"> Roll Number</label>
-          <input type="text" name="rollNumber" id="rollNumber" minlength="5" pattern="\d{5,}"
+          <input required type="text" name="rollNumber" id="rollNumber" minlength="5" pattern="\d{5,}"
             placeholder="Enter Your Roll Number">
           <label for="marks">Marks Obtained</label>
-          <input type="text" name="marks" id="marks" pattern="\d+" placeholder="Enter Your Marks Obtained">
+          <input required type="text" name="marks" id="marks" pattern="\d+" placeholder="Enter Your Marks Obtained">
           <label for="stream">Stream</label>
-          <select name="stream" id="stream">
+          <select required name="stream" id="stream">
             <option value="" selected disabled hidden style="opacity: 60%;">Select your preference</option>
             <option value="IT">Information Technology</option>
             <!-- <option value="security">Security</option> -->
@@ -86,11 +87,12 @@
           <h2 class="breakers">Contact Information</h2>
 
           <label for="email">Email</label>
-          <input type="email" name="email" id="email" placeholder="Enter Your Email">
+          <input required type="email" name="email" id="email" placeholder="Enter Your Email">
           <label for="phone">Phone Number</label>
-          <input type="tel" name="phone" id="phone" maxlength="10" pattern="\d{10}" placeholder="e.g. +91 7566888870">
+          <input required type="tel" name="phone" id="phone" maxlength="10" pattern="\d{10}"
+            placeholder="e.g. +91 7566888870">
           <label for="address">Address</label>
-          <input type="text" name="address" id="address" placeholder="Enter Your Address">
+          <input required type="text" name="address" id="address" placeholder="Enter Your Address">
           <div class="confirmation">
             <input type="checkbox" name="checkbox" id="checkbox">
             <h2> I hereby declare that the information provided above is true and correct to the best of my knowledge. I
@@ -99,6 +101,7 @@
                   
           </div>
           <button class="btn-peela btn portal-btn" id="submit" type="submit">Apply</button>
+
 
         </form>
       </div>
@@ -236,7 +239,7 @@
 
     marks.addEventListener('input', function () {
       const val = Number(marks.value);
-      if (isNaN(val) || val < 0 || val > 100) {
+      if (isNaN(val) || val < 0 || val >= 100) {
         marks.setCustomValidity("Marks must be between 0 and 100 only.");
       } else {
         marks.setCustomValidity("");
