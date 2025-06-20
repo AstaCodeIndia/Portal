@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="/stylesheets/style.css">
     <script src="https://kit.fontawesome.com/f87a898598.js" crossorigin="anonymous"></script>
     <style>
+        header #logo a {
+            font-weight: bold;
+        }
+
         #admin-area {
             display: flex;
             flex-direction: column;
@@ -179,7 +183,8 @@
 <body>
     <main>
         <header>
-            <div id="logo"><a href="/">Vocational Portal<br> School Management System</a></div>
+            <div id="logo"><a href="/">Govt. Excellence H.S.S. No-1 Bhind<br>Vocational Portal | School
+                    Management System</a></div>
             <button id="show-nav-btn"><i class="fa-solid fa-bars-staggered"></i></button>
         </header>
 
@@ -384,37 +389,37 @@
     <!-- for nodemailer connection -->
     <script>
         document.getElementById('all-send-mail').addEventListener('click', async (e) => {
-    e.preventDefault();
+            e.preventDefault();
 
-    const btn = e.target;
-    btn.disabled = true;          // 🛑 disable button
-    btn.innerText = 'Sending... to All'; // 👀 UI feedback
-    btn.style.cursor = 'not-allowed';
+            const btn = e.target;
+            btn.disabled = true;          // 🛑 disable button
+            btn.innerText = 'Sending... to All'; // 👀 UI feedback
+            btn.style.cursor = 'not-allowed';
 
-    let classType = shuffle === 1 ? '9th' : '11th';
-    let selectedStream = document.getElementById('subject').value;
+            let classType = shuffle === 1 ? '9th' : '11th';
+            let selectedStream = document.getElementById('subject').value;
 
-    try {
-        const res = await fetch('/send-all-mails', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ classType, stream: selectedStream })
+            try {
+                const res = await fetch('/send-all-mails', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ classType, stream: selectedStream })
+                });
+
+                const data = await res.json();
+                alert(data.message);
+            } catch (err) {
+                console.error('Error:', err);
+                alert("Something went wrong!");
+            } finally {
+                btn.disabled = false;     // ✅ Enable again (if you want)
+                btn.innerText = 'Send Notification';
+                btn.style.cursor = 'pointer';
+            }
         });
-
-        const data = await res.json();
-        alert(data.message);
-    } catch (err) {
-        console.error('Error:', err);
-        alert("Something went wrong!");
-    } finally {
-        btn.disabled = false;     // ✅ Enable again (if you want)
-        btn.innerText = 'Send Notification';
-         btn.style.cursor = 'pointer';
-    }
-});
     </script>
 
- <!-- for csv print setup -->
+    <!-- for csv print setup -->
     <script>
         // Attach event listener to the Print button
         document.getElementById('download-csv').addEventListener('click', () => {

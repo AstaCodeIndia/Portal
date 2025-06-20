@@ -73,21 +73,21 @@ router.get('/download-csv', async (req, res) => {
 
   try {
     let users;
-    let queryOptions = { gender};
+    let queryOptions = { gender };
 
-     // Choose the right model based on class and stream
+    // Choose the right model based on class and stream
     let model
     if (classType === '9th' && streamType === 'IT') {
       model = ITNinthClass;
     } else if (classType === '9th' && streamType === 'security') {
-       model = SecurityNinthClass;
+      model = SecurityNinthClass;
     } else if (classType === '11th' && streamType === 'IT') {
       model = ITEleventhClass;
     } else {
       return res.status(400).send("Invalid class or stream type.");
     }
 
-     // Apply limit and sorting only if mode is 'selected'
+    // Apply limit and sorting only if mode is 'selected'
     if (mode === 'selected') {
       users = await model.find(queryOptions).sort({ marks: -1 }).limit(25);
     } else {
@@ -106,65 +106,67 @@ router.get('/download-csv', async (req, res) => {
 
 // route to send emails to 25 boys + 25 girls
 router.post('/send-selected-mails', async (req, res) => {
-    const IT9 = await ITNinthClass.find();
-    const IT11 = await ITEleventhClass.find();
-    const Security9 = await SecurityNinthClass.find();
-    const allApplicants = [...IT9, ...IT11, ...Security9];
+  const IT9 = await ITNinthClass.find();
+  const IT11 = await ITEleventhClass.find();
+  const Security9 = await SecurityNinthClass.find();
+  const allApplicants = [...IT9, ...IT11, ...Security9];
 
 
-    const boys = allApplicants.filter(app => app.gender === 'Male').sort((a, b) => b.marks - a.marks).slice(0, 25);
-    const girls = allApplicants.filter(app => app.gender === 'Female').sort((a, b) => b.marks - a.marks).slice(0, 25);
+  const boys = allApplicants.filter(app => app.gender === 'Male').sort((a, b) => b.marks - a.marks).slice(0, 25);
+  const girls = allApplicants.filter(app => app.gender === 'Female').sort((a, b) => b.marks - a.marks).slice(0, 25);
 
-    const selected = [...boys, ...girls];
+  const selected = [...boys, ...girls];
 
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'astacodeindiabusiness@gmail.com',
-            pass: 'srzbhwlzfzipmxcy'
-        }
-    });
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'astacodeindiabusiness@gmail.com',
+      pass: 'srzbhwlzfzipmxcy'
+    }
+  });
 
-    for (let student of selected) {
-        await transporter.sendMail({
-            from: 'your_email@gmail.com',
-            to: student.email,
-            subject: '🎉 You are Selected!',
-            text: `Dear ${student.fullname},\n\nCongratulations! You have been selected based on your application.\n\nRegards,\nVocational Team`
-        });
+  for (let student of selected) {
+    await transporter.sendMail({
+      from: 'your_email@gmail.com',
+      to: student.email,
+      // subject: '🎉 You are Selected!',
+      // text: `Dear ${student.fullname},\n\nCongratulations! You have been selected based on your application.\n\nRegards,\nVocational Team`
+      subject: `🎉 You are Selected in ${ student.stream } Trade`,
+      text: `Dear ${ student.fullname }, \n\nCongratulations! You have been selected in Trade ${ student.stream } under Vocational Education in Govt. Excellence HSS No-1 Bhind.\nPlease contact the authority or the Head/Incharge to confirm your selection.\n\nBest Regards, \nVocational Team`
+  });
     }
 
-    // res.send('Selected students notified successfully.');
-    res.json({ message: "Selected students notified successfully!👍" });
+// res.send('Selected students notified successfully.');
+res.json({ message: "Selected students notified successfully!👍" });
 
 });
 
 // route to send emails to all applicaticants
 router.post('/send-all-mails', async (req, res) => {
-    const IT9 = await ITNinthClass.find();
-    const IT11 = await ITEleventhClass.find();
-    const Security9 = await SecurityNinthClass.find();
-    const allApplicants = [...IT9, ...IT11, ...Security9];
+  const IT9 = await ITNinthClass.find();
+  const IT11 = await ITEleventhClass.find();
+  const Security9 = await SecurityNinthClass.find();
+  const allApplicants = [...IT9, ...IT11, ...Security9];
 
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'astacodeindiabusiness@gmail.com',
-            pass: 'srzbhwlzfzipmxcy'
-        }
-    });
-
-    for (let student of allApplicants) {
-        await transporter.sendMail({
-            from: 'your_email@gmail.com',
-            to: student.email,
-            subject: '📝 Thanks for Applying!',
-            text: `Dear ${student.fullname},\n\nThank you for submitting your application. We appreciate your interest.\n\nRegards,\nVocational Team`
-        });
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'astacodeindiabusiness@gmail.com',
+      pass: 'srzbhwlzfzipmxcy'
     }
+  });
 
-    // res.send('All applicants notified successfully.');
-     res.json({ message: "All applicants notified successfully.✅" });
+  for (let student of allApplicants) {
+    await transporter.sendMail({
+      from: 'your_email@gmail.com',
+      to: student.email,
+      subject: '📝 Thanks for Applying!',
+      text: `Dear ${student.fullname},\n\nThank you for submitting your application. We appreciate your interest.\n\nRegards,\nVocational Team`
+    });
+  }
+
+  // res.send('All applicants notified successfully.');
+  res.json({ message: "All applicants notified successfully.✅" });
 });
 
 
@@ -296,11 +298,11 @@ router.post('/11th-portal', async (req, res) => {
 
   try {
 
- // Aadhaar duplicate check
+    // Aadhaar duplicate check
     let existing;
     if (stream === 'IT') {
       existing = await ITEleventhClass.findOne({ adhaar });
-    } 
+    }
 
     if (existing) {
       return res.redirect('/11th-portal?error=duplicate');

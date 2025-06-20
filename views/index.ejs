@@ -14,7 +14,8 @@
 <body>
   <main>
     <header>
-      <div id="logo"><a href="/">Vocational Portal<br> School Management System</a></div>
+      <div id="logo"><a href="/">Govt. Excellence H.S.S. No-1 Bhind<br>Vocational Portal | School Management System</a>
+      </div>
       <button id="show-nav-btn"><i class="fa-solid fa-bars-staggered"></i></button>
     </header>
     <section id="hero">
@@ -26,7 +27,8 @@
       </div>
       <div id="cta">
         <button class="btn-peela btn" id="show-class-btn">Apply Now</button>
-        <button class="btn-white btn">Watch Tutorial</button>
+        <button class="btn-white btn"><a href="https://youtu.be/Qs97-36oZYA?si=0MuTQ3doQc3vitZY" target="_blank">Watch
+            Tutorial</a></button>
       </div>
       <div id="class-card">
         <div id="card">
@@ -148,7 +150,8 @@
       <button class="btn-peela btn" id="show-class-btn"><a href="/9th-portal">Apply Now</a></button>
       <div class="credits">
         <h2>Managed by Vocatioal Trade IT</h2>
-        <h2>Designed and Developed by <a href="https://www.instagram.com/itzsumit_2908" target="_blank">Sumit Sharma</a> & <a href="https://www.instagram.com/rudra.aksh9598" target="_blank">Rohit Argal</a></h2>
+        <h2>Designed and Developed by <a href="https://www.instagram.com/itzsumit_2908" target="_blank">Sumit Sharma</a>
+          & <a href="https://www.instagram.com/rudra.aksh9598" target="_blank">Rohit Argal</a></h2>
       </div>
     </footer>
   </main>
@@ -178,64 +181,64 @@
     }
     showClassCard()
 
- const mediaQuery = window.matchMedia('(max-width: 900px)');
+    const mediaQuery = window.matchMedia('(max-width: 900px)');
     if (mediaQuery.matches) {
       console.log('Screen width is less than or equal to 900');
     } else {
-    
-    new SplitType('#main-txt h1')
-    new SplitType('#sub-txt h1')
-    new SplitType('#part-3-title h1')
-    new SplitType('#faq-title h1')
-    new SplitType('#footer-title h1')
 
-    const tl = gsap.timeline()
-    tl.from('#main-txt h1 .word .char', {
-      x: 100,
-      borderBottom: "1px solid #fff",
-      opacity: 0,
-      stagger: .05
-    })
-    tl.from('#sub-txt h1 .word .char', {
-      x: 100,
-      opacity: 0,
-      stagger: .05
-    })
-    gsap.from('#part-3-title h1 .word .char', {
-      x: 100,
-      opacity: 0,
-      stagger: .05,
-      scrollTrigger: {
-        trigger: "#part-3",
-        start: "top 5%",
-        end: "top 5%",
-        // markers: true
-      }
-    })
-    gsap.from('#faq-title h1 .word .char', {
-      x: 100,
-      opacity: 0,
-      stagger: .05,
-      scrollTrigger: {
-        trigger: "#part-4",
-        start: "top 5%",
-        end: "top 5%",
-        // markers: true
-      }
-    })
-    gsap.from('#footer-title h1 .word .char', {
-      x: 100,
-      opacity: 0,
-      stagger: .05,
-      borderBottom: "2px solid #000",
-      scrollTrigger: {
-        trigger: "#part-4",
-        start: "top 50%",
-        end: "top 50%",
-        // markers: true
-      }
-    })
-  }
+      new SplitType('#main-txt h1')
+      new SplitType('#sub-txt h1')
+      new SplitType('#part-3-title h1')
+      new SplitType('#faq-title h1')
+      new SplitType('#footer-title h1')
+
+      const tl = gsap.timeline()
+      tl.from('#main-txt h1 .word .char', {
+        x: 100,
+        borderBottom: "1px solid #fff",
+        opacity: 0,
+        stagger: .05
+      })
+      tl.from('#sub-txt h1 .word .char', {
+        x: 100,
+        opacity: 0,
+        stagger: .05
+      })
+      gsap.from('#part-3-title h1 .word .char', {
+        x: 100,
+        opacity: 0,
+        stagger: .05,
+        scrollTrigger: {
+          trigger: "#part-3",
+          start: "top 5%",
+          end: "top 5%",
+          // markers: true
+        }
+      })
+      gsap.from('#faq-title h1 .word .char', {
+        x: 100,
+        opacity: 0,
+        stagger: .05,
+        scrollTrigger: {
+          trigger: "#part-4",
+          start: "top 5%",
+          end: "top 5%",
+          // markers: true
+        }
+      })
+      gsap.from('#footer-title h1 .word .char', {
+        x: 100,
+        opacity: 0,
+        stagger: .05,
+        borderBottom: "2px solid #000",
+        scrollTrigger: {
+          trigger: "#part-4",
+          start: "top 50%",
+          end: "top 50%",
+          // markers: true
+        }
+      })
+    }
 
   </script>
 </body>

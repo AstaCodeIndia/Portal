@@ -222,6 +222,16 @@ button.btn {
   box-shadow: #fff 0px 0px 3px 3px;
 }
 
+.btn-white a {
+  Color: black;
+  text-decoration: none;
+}
+
+.btn-white:hover {
+  transform: scale(1.05);
+  transition: all .7s ease-in-out;
+}
+
 #class-card {
   position: fixed;
   top: 0;
