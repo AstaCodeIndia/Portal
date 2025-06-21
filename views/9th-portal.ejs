@@ -75,13 +75,23 @@
             placeholder="Enter Your Roll Number">
           <label for="marks">Marks Obtained</label>
           <input required type="text" name="marks" id="marks" pattern="\d+" placeholder="Enter Your Marks Obtained">
-          <label for="stream">Stream</label>
+          <label for="medium">Medium</label>
+          <select required name="medium" id="medium">
+            <option value="" selected disabled hidden style="opacity: 60%;">Select your Medium</option>
+            <option value="English">English</option>
+            <option value="Hindi">Hindi</option>
+          </select>
+          </select>
+          <label for="section">Section</label>
+          <input type="text" name="section" required id="section" placeholder="Enter Your Section">
+
+          <label for="stream">Subject</label>
           <select required name="stream" id="stream">
             <option value="" selected disabled hidden style="opacity: 60%;">Select your preference</option>
             <option value="IT">Information Technology</option>
             <!-- <option value="security">Security</option> -->
           </select>
-
+          
           <!-- Contact Information -->
           <h2 class="breakers">Contact Information</h2>
 

@@ -452,7 +452,7 @@
             if (data.length === 0) return '';
 
             // Prepare CSV header
-            const csvHeader = 'Full Name,Father\'s Name,Mother\'s Name,Gender,Category,Aadhaar Number,Samagra ID,Date of Birth,Roll Number,Marks,Stream,Email Address,Phone Number,Address';
+            const csvHeader = 'Full Name,Father\'s Name,Mother\'s Name,Gender,Category,Aadhaar Number,Samagra ID,Date of Birth,Roll Number,Marks,Medium,Section,Trade,Email Address,Phone Number,Address';
             const csvRows = data.map(row => {
                 const { _id, __v, ...rest } = row;  // Destructure and exclude _id and __v
 
@@ -465,7 +465,15 @@
                     return `="${day}-${month}-${year}"`;
                 }
 
-                return `${rest.fullname},${rest.fathername},${rest.mothername},${rest.gender},${rest.category},${rest.adhaar},${rest.sssmID},${formatDOBToDDMMYYYY(rest.dob)},${rest.rollNumber},${rest.marks},${rest.stream},${rest.email},${rest.phone},${rest.address}`;
+                // Fix Address Comma issue 
+                function wrapWithQuotes(value) {
+                    if (typeof value === 'string') {
+                        return `"${value.replace(/"/g, '""')}"`; // Commas and inner quotes handled
+                    }
+                    return `"${value}"`;
+                }
+
+                return `${rest.fullname},${rest.fathername},${rest.mothername},${rest.gender},${rest.category},${rest.adhaar},${rest.sssmID},${formatDOBToDDMMYYYY(rest.dob)},${rest.rollNumber},${rest.marks},${rest.medium},${rest.section},${rest.stream},${rest.email},${rest.phone},${wrapWithQuotes(rest.address)}`;
             });
 
             // Join header and rows

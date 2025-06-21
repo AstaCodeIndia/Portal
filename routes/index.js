@@ -225,7 +225,7 @@ router.get('/instructor', (req, res) => {
 
 // Handle form submission for 9th class
 router.post('/9th-portal', async (req, res) => {
-  const { fullname, fathername, mothername, gender, category, adhaar, sssmID, dob, rollNumber, marks, stream, email, phone, address } = req.body;
+  const { fullname, fathername, mothername, gender, category, adhaar, sssmID, dob, rollNumber, marks, medium, section, stream, email, phone, address } = req.body;
 
   try {
 
@@ -253,6 +253,8 @@ router.post('/9th-portal', async (req, res) => {
         dob,
         rollNumber,
         marks,
+        medium,
+        section,
         stream,
         email,
         phone,
@@ -272,6 +274,8 @@ router.post('/9th-portal', async (req, res) => {
         dob,
         rollNumber,
         marks,
+        medium,
+        section,
         stream,
         email,
         phone,
@@ -294,7 +298,7 @@ router.post('/9th-portal', async (req, res) => {
 
 // Handle form submission for 11th class
 router.post('/11th-portal', async (req, res) => {
-  const { fullname, fathername, mothername, gender, category, adhaar, sssmID, dob, rollNumber, marks, stream, email, phone, address } = req.body;
+  const { fullname, fathername, mothername, gender, category, adhaar, sssmID, dob, rollNumber, marks, medium, section, stream, email, phone, address } = req.body;
 
   try {
 
@@ -321,6 +325,8 @@ router.post('/11th-portal', async (req, res) => {
         dob,
         rollNumber,
         marks,
+        medium,
+        section,
         stream,
         email,
         phone,
